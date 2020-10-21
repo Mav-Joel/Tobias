@@ -1,0 +1,1 @@
+scp -r /home/joel/Archétype $1:~/
