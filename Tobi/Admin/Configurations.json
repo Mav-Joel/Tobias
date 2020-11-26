@@ -25,7 +25,7 @@
       },
       "Tobias": {
         "name": "MainTobias",
-        "local dbpassword": "GrpAmPMaverick&",
+        "local dbpassword": "notmypassword",
         "admin": "True"
       }
     }

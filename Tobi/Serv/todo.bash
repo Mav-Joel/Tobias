@@ -1,5 +1,5 @@
 sudo apt-get install nginx
-CREATE USER 'Python'@'localhost' IDENTIFIED BY 'GrpAmPMaverick&';
+CREATE USER 'Python'@'localhost' IDENTIFIED BY 'notmypassword';
 GRANT ALL PRIVILEGES ON * . * TO 'Python'@'localhost';
 FLUSH PRIVILEGES;
 pip3 install PyQt5
