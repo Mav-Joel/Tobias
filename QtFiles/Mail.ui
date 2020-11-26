@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>782</width>
+    <height>486</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Tobias's Mail Page</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>261</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>From</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>261</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>To</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>170</y>
+      <width>261</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Object</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="plainTextEdit">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>10</y>
+      <width>351</width>
+      <height>411</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Content</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>390</y>
+      <width>341</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Send</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="plainTextEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>220</y>
+      <width>361</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Contact List</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_4">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>261</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Email's Password</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>120</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>All Contacts</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Top Half</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Bottom Half</string>
+     </property>
+    </item>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>782</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuParam_tres">
+    <property name="title">
+     <string>Paramètres</string>
+    </property>
+    <addaction name="actionVider_la_liste_de_contact"/>
+   </widget>
+   <widget class="QMenu" name="menuPr_r_glages">
+    <property name="title">
+     <string>Préréglages</string>
+    </property>
+    <addaction name="actionP1"/>
+    <addaction name="actionP2"/>
+    <addaction name="actionP3"/>
+    <addaction name="actionP4"/>
+    <addaction name="actionP5"/>
+   </widget>
+   <addaction name="menuParam_tres"/>
+   <addaction name="menuPr_r_glages"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionP1">
+   <property name="text">
+    <string>P1</string>
+   </property>
+  </action>
+  <action name="actionP2">
+   <property name="text">
+    <string>P2</string>
+   </property>
+  </action>
+  <action name="actionP3">
+   <property name="text">
+    <string>P3</string>
+   </property>
+  </action>
+  <action name="actionP4">
+   <property name="text">
+    <string>P4</string>
+   </property>
+  </action>
+  <action name="actionP5">
+   <property name="text">
+    <string>P5</string>
+   </property>
+  </action>
+  <action name="actionVider_la_liste_de_contact">
+   <property name="text">
+    <string>Vider la liste de contact</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

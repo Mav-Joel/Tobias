@@ -1,0 +1,9 @@
+#Pouvoir faire tourner des scripts
+Get-ExecutionPolicy
+Set-ExecutionPolicy Unrestricted
+
+#Liste les modules
+Get-Module -ListAvailable
+
+#Récupérer le module 
+Import-Module X

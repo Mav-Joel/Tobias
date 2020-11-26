@@ -1,0 +1,881 @@
+#!/usr/bin/env python3
+#-*-coding:utf-8-*-
+#Propriété de Toula
+"""Importation base de donnée"""
+import mysql
+import mysql.connector
+
+"""Importation Interface Graphique"""
+from tkinter.filedialog import *
+from tkinter.messagebox import *
+from tkinter import *
+
+import os
+import sys
+from getpass import getpass 
+import hashlib
+import signal
+import linecache
+import webbrowser
+import subprocess
+import socket
+import time
+import gi
+gi.require_version('Notify', '0.7')
+from gi.repository import Notify
+from threading import Thread
+import threading
+import argparse
+import mysql.connector
+import paramiko
+import datetime
+
+"""Importation des Modules"""
+from Riot import *
+from Traffic_Reseau import *
+from Backbone import *
+
+
+"""Importation de la Bibliotheque"""
+
+from Bibliotheque.Book_Thread import *
+from Bibliotheque.NBook import *
+from Bibliotheque.TBook import *
+from Bibliotheque.Book_Security import *
+from Bibliotheque.DBook import *
+
+
+""" Ce programme est séparé en 5 parties qui sont dans l'ordre :
+
+- Options
+- Fonctions
+- Threads
+- Programmes lié au fonctionnement de Tobias
+- Interface graphique
+
+"""
+
+Utilisateur=os.environ["USER"]
+self.MagicWord=os.environ["MDP"]
+#Options/////////////////////////////////////////////////
+
+if len(sys.argv) > 1 : #Si une option est saisie alors :
+
+        if sys.argv[1] == "Website" :
+                webbrowser.open("http://92.142.47.33")
+
+        elif sys.argv[1] == "Web" :
+                Recherche_Internet(sys.argv[2])
+
+        elif sys.argv[1] == "Lancement":
+                os.system(f"/home/{Utilisateur}/Archetype/Tobito/First_Start.py")
+
+        elif sys.argv[1] == "Network":
+                os.system(f"/home/{Utilisateur}/Archetype/Tobito/Page_Reseau.py")
+
+        elif sys.argv[1] == "Tools":
+                os.system(f"/home/{Utilisateur}/Archetype/Tobito/Page_Outils.py")
+
+        elif sys.argv[1] == "Archetype":
+                os.system(f"/home/{Utilisateur}/Archetype/Tobito/Page_Archetype.py")
+
+        elif sys.argv[1] == "Navigate":
+                os.system(f"/home/{Utilisateur}/Archetype/Tobito/Page_Navigation.py")
+
+        elif sys.argv[1] == "Log in":
+                os.system(f"/home/{Utilisateur}/Archetype/Tobito/Authentification.py")
+
+        elif sys.argv[1] == "I/E":
+                os.system(f"/home/{Utilisateur}/Archetype/Tobito/Import/Export_Notes.py")
+
+        elif sys.argv[1] == "help":
+                print("Options : Web , Network , Tools , Archetype , Navigate , Log in , I/E , help , Lancement")
+
+else : #Si aucune option n'est saisie alors lancement programme Principal
+#Choix des mots clés
+        #Fonctions///////////////////////////////////////////////////////////////
+
+        def Page_Web() : 
+                os.system(f"/home/{Utilisateur}/Archetype/Tobito/Recherche_Web.py")
+
+        def Reseau(): #Scan du Réseau actuel , donnant l'adresse Mac et le SSID de tout les réseaux vus
+                os.system(f"/home/{Utilisateur}/Archetype/Tobito/Page_Reseau.py")
+
+        def BackBone():
+                Tools().Notification("BackBone est activé")
+                while True :
+                        ipScan(Network().myIp("ip"))
+                        time.sleep(10)
+
+
+
+        def Traffic():
+                BackBone_Network.Connexions()
+
+        def Outils():
+                os.system(f"/home/{Utilisateur}/Archetype/Tobito/Page_Outils.py")
+
+        def Créer_un_Archetype():
+                os.system(f"/home/{Utilisateur}/Archetype/Tobito/Page_Archetype.py")
+
+        def Handle():
+                Tools().Notification("BackBone est désactivé")
+                Pid=Recup("Systeme","BackBone_PID")
+                Pid=int(Pid)
+                os.kill(Pid,signal.SIGTERM)
+                print("Backbone Offline")
+
+        def First_of_All():
+                os.system(f"/home/{Utilisateur}/Archetype/Tobito/First_Start.py")
+
+        def Lecture_Tools().Notification():
+
+                Fichier=open(f"/home/{Utilisateur}/Archetype/Boite_a_outils/.Note.txt")
+
+                n=0
+                for line in Fichier :
+                        n+=1
+
+                A_Afficher=(n)
+
+                Timer=0
+                i=0
+
+                while Timer != A_Afficher+1 :
+                        time.sleep(0.5)
+                        a=linecache.getline(f"/home/{Utilisateur}/Archetype/Boite_a_outils/.Note.txt",i)
+                        time.sleep(1)
+                        Notify.init('example')
+                        notif = Notify.Tools().Notification.new(
+                        'Note', # titre
+                        a, # message
+                        'dialog-information' # icône
+                        )
+                        notif.show()
+                        print(a)
+
+                        Timer=Timer+1
+                        i=i+1
+
+        def Informations_System():
+                os.system("acpi -V")
+
+        def Crontab():
+
+            os.system(f"/home/{Utilisateur}/Archetype/Tobito/Temps_CronTab.py")
+
+        def Sauvegarde():
+                os.system(f"/home/{Utilisateur}/Archetype/Tobito/LifeSaver.py")
+
+        def One_Man_Standing():
+                os.system("bluetooth off")
+                os.system("wifi off")
+                print("Bluetooth and Wifi disabled")
+                Tools().Notification("Gone Dark")
+
+        def Standing():
+
+                os.system("bluetooth on")
+                os.system("wifi on")
+                print("Bluetooth and Wifi enabled")
+                Tools().Notification("Light Again")
+
+        def Riot() :
+                while True :
+                        time.sleep(8)
+                        Security.Vérification_Authorized_keys()
+                        Security.Vérification_Crontab()
+                        Security.Connexion()
+                        Security.Systeme_de_Fichier()
+
+        def Music():
+                os.system("vlc ~/Bureau/Naruto\ \ Amazing\ Chill\ Trap\,\ Lofi\ Hip\ Hop\ Mix.mp3 ")
+                print("Playing Music")
+
+
+        def Multi_Task_PCs(Programme,Ip,Pc):
+                
+                print("Multitasking ongoing")
+                #Envoi du fichier de contrôle / Envoi du programme dans le fichier de contrôle
+                os.system("scp -r /home/Utilisateur/Archetype/Tobito/Multi_Task_Pcs {}:~/".format(Pc)) 
+
+                os.system("scp {} {}:/home/Utilisateur/Multi_Task_Pcs ".format(Programme,Pc))
+
+                # Executer le programme
+                ssh=paramiko.SSHClient()
+                ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+                ssh.connect(Ip,port=22 ,username='joel',password="notmypassword")
+                stdin,stdout,stderr=ssh.exec_command("chmod u+x ~/Multi_Task_Pcs/* | ~/Multi_Task_Pcs/* >> ~/Multi_Task_Pcs/Rapport/Result")
+                output= stdout.readlines()
+                print( "\n".join(output))
+
+                os.system("scp {}:~/Multi_Task_Pcs/Rapport/Result /home/Utilisateur/Archetype/Tobito/Multi_Task_Pcs/Rapport ".format(Pc))
+
+
+
+        def Ally_Computers():
+                
+                registredComps=[]
+                def customRecup():
+
+                        mydb = mysql.connector.connect(
+                        host="localhost",
+                        user="Python",
+                        passwd=self.MagicWord,
+                        )
+
+                        Command = mydb.cursor()
+                        Command.execute("USE Ressources")
+                        Command.execute("SELECT Information FROM Systeme WHERE Programme='Ally_Computer'")
+
+                        for x in Command:
+                                for lettre in x :
+                                        registredComps.append(lettre)
+
+                        return registredComps
+
+                currentSshList=[]
+                def currentSsh():
+
+                        numPcs=subprocess.getoutput("ps -elf | egrep 'ssh' | egrep '@[0-9]' | awk '{print $16}' | sed -re \"s/[a-z]//g\" | sed -re \"s/[A-Z]//g\" | sed -re \"s/@//g\" | wc -l")
+                        for i in range(1,int(numPcs)+1):
+                                Pcs=subprocess.getoutput("ps -elf | egrep 'ssh' | egrep '@[0-9]' | awk '{print $16}' | sed -re \"s/[a-z]//g\" | sed -re \"s/[A-Z]//g\" | sed -re \"s/@//g\"|head -n"+str(i)+" | tail -n1")
+                                currentSshList.append(Pcs)
+                        return currentSshList
+
+
+                # #Core
+                a=customRecup()
+                b=currentSsh()
+                toStock=set(b)-set(a)
+
+                list_of_strings = [str(s) for s in toStock]
+                joined_string = " ".join(list_of_strings)
+
+                if joined_string == "" :
+                        pass
+                else : 
+                        Stocker(joined_string,"Ally_Computer","Systeme")
+
+                def checker():
+                        mydb = mysql.connector.connect(
+                        host="localhost",
+                        user="Python",
+                        passwd=self.MagicWord,
+                        )
+
+                        Command = mydb.cursor()
+                        Command.execute("USE Ressources")
+                        Command.execute("SELECT Information FROM Systeme WHERE Programme='Ally_Computer'")
+
+                        for x in Command:
+                                for lettre in x :
+                                        pass
+
+                        return lettre
+
+                        if len(lettre()) > 13 :
+                                mydb = mysql.connector.connect(
+                                host="localhost",
+                                user="Python",
+                                passwd=self.MagicWord,
+                                )
+
+                                Command = mydb.cursor()
+                                Command.execute("USE Ressources")
+                                Command.execute("DELETE FROM Systeme WHERE Programme='Ally_Computer' AND Information='"+lettre()+"'")
+                        
+                if customRecup() == "" :
+                        pass
+                else :
+                        try :
+                                #checker()
+                                mydb = mysql.connector.connect(
+                                host="localhost",
+                                user="Python",
+                                passwd=self.MagicWord,
+                                )
+
+                                Command = mydb.cursor()
+                                Command.execute("USE Ressources")
+                                Command.execute("SELECT Information FROM Systeme WHERE Programme='Ally_Computer'")
+
+                                for x in Command:
+                                        for lettre in x :
+
+                                                ssh=paramiko.SSHClient()
+                                                ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+                                                ssh.connect(lettre,port=22 ,username='joel',password=self.MagicWord)
+                                                Tools().Notification("La machine avec l'IP "+lettre+" est allumé")
+                                                time.sleep(1)
+
+                        except paramiko.ssh_exception.NoValidConnectionsError :
+                                print("[-] Connexion Impossible : \n"   +Recup("Systeme","Ally_Computer")+" est hors d'atteinte")
+                                print("Pas de connexion Internet")
+
+                        except paramiko.ssh_exception.AuthenticationException :
+                                print("Mot de passe incorrect")
+                                print("\n")
+
+                        except OSError :
+                                print("[-] Connexion Impossible : \n"+Recup("Systeme","Ally_Computer")+" est hors d'atteinte")
+
+                        except paramiko.ssh_exception.SSHException :
+                                print("Erreur")
+
+
+                
+                        time.sleep(300)
+
+        def Usb():
+
+                while True :
+                        onOff=Recup("Systeme","USB")
+                        nombreDepériphérique=subprocess.getoutput("lsusb|wc -l")
+                        if int(onOff) == 1 :
+                                pass
+                        else :
+                                if int(nombreDepériphérique) > 4 :
+
+                                        os.system(f"/home/{Utilisateur}/Archetype/Tobito/Page_Usb.py")
+                                        Update("1","USB","Systeme")     
+                                else : 
+                                        Update("0","USB","Systeme")
+
+                        time.sleep(5)
+
+
+        def Environnement():
+
+
+                Adresse_IP=subprocess.getoutput("ip a | egrep \"inet \" | tail -1 | sed -re \"s/[a-z]//g\" | awk '{print $1}' | sed -re \"s/\/..//g\"")
+
+                if Adresse_IP == "127.0.0.1/8" :
+                        return ("Localisation : Pas de connexion Internet")
+                elif Adresse_IP == "192.168.1.19" :
+                        return("Localisation : Maison")
+                else :
+                        return("Localisation inconnue , adresse ip actuel "+Adresse_IP)
+
+        def Processus():
+
+                while True :
+                        Pourcentage=subprocess.getoutput("top -b | awk '{print $9}' | head -n +15 | tail -n 8 |head -n 1")
+                        if len(Pourcentage) >= 5 :
+                                Tools().Notification("Un processus est gourmand")
+                                time.sleep(30)
+        def Attestation():
+                print("Printing")
+                os.system("lpr Bureau/Attestation")
+
+        def Internet_Protocol():
+               
+        
+                while True :
+
+                        
+                        
+                        def Trouver(ip):
+
+                                nm = nmap.PortScanner()
+                                nm.scan(hosts=ip+'/24', arguments='-n -sP -PE -PA21,23,80,3389')
+                                hosts_list = nm.all_hosts()
+                                return str(hosts_list)
+                        
+                        currentNetworkHosts=Trouver(Network().myIp("ip"))
+
+                        def routine(ip):
+                                perifList=[]
+                                mydb = mysql.connector.connect(
+                                host="localhost",
+                                user="Python",
+                                passwd=self.MagicWord,
+                                )
+                                Command = mydb.cursor() 
+                                Command.execute("USE Ressources") 
+                                Command.execute("SELECT adresse FROM knownIps")
+                                for x in Command:
+                                        for adresse in x :
+                                                perifList.append(adresse)
+
+                                return perifList
+
+                        nm = nmap.PortScanner()
+                        nm.scan(hosts=Network().myIp("ip")+'/24', arguments='-n -sP -PE -PA21,23,80,3389')
+                        hosts_list = nm.all_hosts()
+                        for lettre in hosts_list :
+                                if routine(Network().myIp("ip")).count(lettre) >= 1 :
+                                        pass    
+                                else : 
+                                        print("Unknown")
+                                        print("L'adresse ip : "+lettre+" s'est connectée sur le réseau mais est inconnu du système")
+                                        print("An Unknown I.P Address just logged into the network , this I.P is {} . Would you like to register this I.P ?".format(lettre))
+
+                                        answer=input("Connaissez vous cette adresse ip : {}? [yes/no] \n".format(lettre))
+                                        
+                                        if answer == "yes":
+                                                name=input("Nommez là \n")
+                                                Stocker(lettre,name,"knownIps","nom","adresse")
+                                                Stocker(lettre,"Online","Reseau","Reseau")
+                                                print("The I.P address was added into the known I.Ps")
+                                        
+                                        elif answer == "no" :
+                                        
+                                                print("If you do not know what this Ip is , you should go into your livebox Network parameters. Would you like me to open this page ?")
+                                                
+                                                answer=input("Voulez vous accéder à l'interface réseau de votre Livebox ? [yes/no]")
+                                                if answer == "yes":
+                                                        webbrowser.open("192.168.1.1")
+                                                        print("Opened")
+                                                elif answer == "no" :
+                                                        pass
+
+                                        else :
+                                                print("Wrong answer")
+
+                                        Update_Host(currentNetworkHosts,"currentNetworkHosts")
+                                        print("Current Network Hosts Updated")
+
+
+
+                        def con(truc):
+
+
+                                mydb = mysql.connector.connect(
+                                host="localhost",
+                                user="Python",
+                                passwd=self.MagicWord,
+                                )
+                                Command = mydb.cursor() 
+                                Command.execute("USE Ressources") 
+                                Command.execute("SELECT nom FROM knownIps WHERE adresse='"+truc+"'")
+                                for x in Command:
+                                        for lettre in x :
+                                                return str(lettre)
+
+                        mydb = mysql.connector.connect(
+                        host="localhost",
+                        user="Python",
+                        passwd=self.MagicWord,
+                        )
+
+                        
+                        def aller():
+                                
+                                registredNetworkHosts=Recup("Reseau","currentNetworkHosts","Information","Reseau")
+                                currentNetworkHosts=Trouver(Network().myIp("ip"))
+
+                                if registredNetworkHosts == currentNetworkHosts :
+                                        pass
+                                
+                                elif len(registredNetworkHosts) > len(currentNetworkHosts) :
+
+                                        Tools().Notification("Une Machine s'est déconnecté sur le réseau")
+                                
+                                        Command = mydb.cursor() 
+                                        Command.execute("USE Ressources") 
+                                        Command.execute("SELECT Information FROM Reseau WHERE Reseau='Online'")
+
+                                        for x in Command:
+
+                                                for lettre in x :
+                                                        result = str(currentNetworkHosts).count(lettre)
+                                                        result=int(result)
+                                                if result >= 1 :
+                                                        pass
+                                                else :
+                                                        Update("Offline",lettre,"Reseau","Reseau","Information")
+                                                        print(con(lettre)+"s'est déconnecté")
+                                                        print(con(lettre)+"just disconnected")
+                                                        Update_Host(currentNetworkHosts,"currentNetworkHosts")
+
+                                elif len(registredNetworkHosts) < len(currentNetworkHosts):
+
+                                                
+                                        Tools().Notification("Une Machine s'est connecté sur le réseau")
+                                        #print("A Machine unlogged from the Network")
+                                        
+                                        Command = mydb.cursor() 
+                                        Command.execute("USE Ressources") 
+                                        Command.execute("SELECT Information FROM Reseau WHERE Reseau='Offline'")
+
+                                        for x in Command:
+                                                for lettre in x :
+
+                                                        result = str(currentNetworkHosts).count(lettre)
+                                                        result=int(result)
+                                                if result >= 1 :
+
+                                                        Update("Online",lettre,"Reseau","Reseau","Information")
+                                                        print(con(lettre)+"just connected")
+                                                        Update_Host(currentNetworkHosts,"currentNetworkHosts")
+                                                else :
+                                                        pass
+                        aller()
+                        routine(Network().myIp("ip"))
+                        time.sleep(5)
+
+                        Internet_Protocol()
+
+
+
+
+        def Greetings():
+                #Rapport _ Mantinale
+                print("Greetings {}".format(Utilisateur))
+         #       print("Thread Riot \
+                     #   Thread BackBone\
+                      #  Thread Processus\
+                       # Thread Ally\
+                        #Thread Usb\
+                        #Thread Internet_Protocol all functionning")
+        
+
+        #THREADS///////////////////////////////////////////
+      
+
+        def Thread_BackBone():
+                mon_thread=threading.Thread(target=BackBone)   #définit la fonction a executer en arrière-plan
+                mon_thread.start()    #lance la fonction, sans faire freeze la fenêtre
+
+        def Thread_Tools().Notification():
+
+                mon_thread=threading.Thread(target=Lecture_Tools().Notification)   #définit la fonction a executer en arrière-plan
+                mon_thread.start()    #lance la fonction, sans faire freezer la fenêtre
+
+        def Thread_Reseau():
+
+                mon_thread=threading.Thread(target=Reseau)   #définit la fonction a executer en arrière-plan
+                mon_thread.start()    #lance la fonction, sans faire freezer la fenêtre
+
+        def Thread_Internet():
+
+                mon_thread=threading.Thread(target=Page_Web)   #définit la fonction a executer en arrière-plan
+                mon_thread.start()    #lance la fonction, sans faire freezer la fenêtre
+
+        def Thread_Outils():
+
+                mon_thread=threading.Thread(target=Outils)   #définit la fonction a executer en arrière-plan
+                mon_thread.start()    #lance la fonction, sans faire freezer la fenêtre
+
+        def Thread_Archetype():
+
+                mon_thread=threading.Thread(target=Créer_un_Archetype)   #définit la fonction a executer en arrière-plan
+                mon_thread.start()    #lance la fonction, sans faire freezer la fenêtre
+
+        def Thread_Cron():
+
+                mon_thread=threading.Thread(target=Crontab)   #définit la fonction a executer en arrière-plan
+                mon_thread.start()    #lance la fonction, sans faire freezer la fenêtre
+
+        def Thread_Sauvegarde():
+
+                mon_thread=threading.Thread(target=Sauvegarde)   #définit la fonction a executer en arrière-plan
+                mon_thread.start()    #lance la fonction, sans faire freezer la fenêtre
+
+        def Thread_Riot():
+                mon_thread=threading.Thread(target=Riot)   #définit la fonction a executer en arrière-plan
+                mon_thread.start()    #lance la fonction, sans faire freezer la fenêtre
+
+        def Thread_Processus():
+                mon_thread=threading.Thread(target=Processus)   #définit la fonction a executer en arrière-plan
+                mon_thread.start()    #lance la fonction, sans faire freezer la fenêtre
+
+        def Thread_Music():
+                mon_thread=threading.Thread(target=Music)   #définit la fonction a executer en arrière-plan
+                mon_thread.start()    #lance la fonction, sans faire freezer la fenêtre
+
+        def Thread_Ally():
+                mon_thread=threading.Thread(target=Ally_Computers)   #définit la fonction a executer en arrière-plan
+                mon_thread.start()    #lance la fonction, sans faire freezer la fenêtre
+
+        def Thread_Usb():
+                mon_thread=threading.Thread(target=Usb)   #définit la fonction a executer en arrière-plan
+                mon_thread.start()    #lance la fonction, sans faire freezer la fenêtre
+
+        def Thread_Internet_Protocol():
+                mon_thread=threading.Thread(target=Internet_Protocol)   #définit la fonction a executer en arrière-plan
+                mon_thread.start()    #lance la fonction, sans faire freezer la fenêtre
+
+        def Thread_Greetings():
+                mon_thread=threading.Thread(target=Greetings)   #définit la fonction a executer en arrière-plan
+                mon_thread.start()    #lance la fonction, sans faire freezer la fenêtre
+
+        #Body/////////////////////////////////////////////////////
+
+                        #PROGRAMME ACTIF EN PERMANENCE
+        Thread_Riot()
+        Thread_BackBone()
+        Thread_Processus()
+        Thread_Ally()
+        Thread_Usb()
+        Thread_Internet_Protocol()
+        Thread_Greetings()
+
+        ####################################################Interface Graphique/////////////////
+
+
+        def Page_Tobias():
+                #FENETRE
+                fenetre = Tk() #Créer la fênetre
+                fenetre.title("Tobias")#Titre de la fênetre
+                fenetre.geometry("1000x700")#Dimensions
+                fenetre.minsize(1000,700)#Tailles minimales et maximales
+                fenetre.maxsize(1000,700)#Tailles minimales et maximales
+
+                def Fermer_Tobias() :
+                        fenetre.destroy()
+
+                def Page_Tobias_Stealth():
+
+                        Fermer_Tobias()
+                        fenetre = Tk() #Créer la fênetre
+                        fenetre.title("Tobias")#Titre de la fênetre
+                        fenetre.geometry("1000x100")#Dimensions
+                        fenetre.minsize(1000,100)#Tailles minimales et maximales
+                        fenetre.maxsize(1000,100)#Tailles minimales et maximales
+
+                        def Fermer_Stealth() :
+                                fenetre.destroy()
+                                Page_Tobias()
+
+                        fenetre.config(background='#3b784c')
+
+                        Partie_Reseau = Button(fenetre, text="Réseau",font=("Courrier"),bg='#3b784c',fg="#000000",height=3,command=Thread_Reseau) #Quitter
+                        Partie_Reseau.pack(expand=YES) #Padding et toute la Longueur X
+                        Partie_Reseau.place(x=20,y=10)
+
+                        Partie_Outils = Button(fenetre, text="Outils",font=("Courrier"),bg='#232d32',fg="#acc3ce",height=3,command=Thread_Outils) #Quitter
+                        Partie_Outils.pack(expand=YES) #Padding et toute la Longueur X
+                        Partie_Outils.place(x=150,y=10)
+
+                        Bouton_Premiers_PAS = Button(fenetre, text="Restart",font=("Courrier"),bg='#3b784c',fg="#000000",height=3,command=First_of_All) #Quitter
+                        Bouton_Premiers_PAS.pack(expand=YES) #Padding et toute la Longueur X
+                        Bouton_Premiers_PAS.place(x=280,y=10)
+
+                        Bouton_Sauvegarde = Button(fenetre, text="Sauvegarde",font=("Courrier"),bg='#232d32',fg="#acc3ce",height=3,command=Thread_Sauvegarde) #Quitter
+                        Bouton_Sauvegarde.pack(expand=YES) #Padding et toute la Longueur X
+                        Bouton_Sauvegarde.place(x=410,y=10)
+
+                        Bouton_Archetype = Button(fenetre, text="Archetype",font=("Courrier"),bg='#3b784c',fg="#000000",height=3,command=Thread_Archetype) #Quitter
+                        Bouton_Archetype.pack(expand=YES) #Padding et toute la Longueur X
+                        Bouton_Archetype.place(x=570,y=10)
+
+                        Bouton_Web = Button(fenetre, text="Web",font=("Courrier"),bg='#232d32',fg="#acc3ce",height=3,command=Thread_Internet) #Quitter
+                        Bouton_Web.pack(expand=YES) #Padding et toute la Longueur X
+                        Bouton_Web.place(x=730,y=10)
+
+                        Bouton_Stealth = Button(fenetre, text="Full Size",font=("Courrier"),bg='#3b784c',fg="#000000",height=3,command=Fermer_Stealth) #Quitter
+                        Bouton_Stealth.pack(expand=YES) #Padding et toute la Longueur X
+                        Bouton_Stealth.place(x=840,y=10)
+
+#                           RACCOURCIS
+
+                        fenetre.bind("<Control-d>",lambda event:One_Man_Standing())
+                        fenetre.bind("<Control-l>",lambda event:Standing())
+                        fenetre.bind("<Control-s>",lambda event:Thread_BackBone())
+                        fenetre.bind("<Control-S>",lambda event:Handle())
+                        fenetre.bind("<Control-a>",lambda event:Thread_Archetype())
+                        fenetre.bind("<Control-o>",lambda event:Thread_Outils())
+                        fenetre.bind("<Control-r>",lambda event:Thread_Reseau())
+                        fenetre.bind("<Control-m>",lambda event:Thread_Music())
+                        fenetre.bind("<Control-c>",lambda event:Attestation())
+
+                        #FENETRE PRINCIPALE
+                        fenetre.mainloop()#Inéluctable
+
+                fenetre.config(background='#3b784c')
+
+                Canvas_Area= Frame(fenetre,bg='#FFFFFF',width=500,height=500)
+                Canvas_Area.pack(expand=YES)
+                Canvas_Area.place(x=30,y=100)
+
+                Top_Area= Frame(fenetre,bg='#3b784c',width=500,height=90,bd=2)
+                Top_Area.pack(expand=YES)
+                Top_Area.place(x=30,y=20)
+
+                Label_Text_1 = Label(Top_Area,text="Bonjour "+Utilisateur.capitalize()+"\n"+Environnement(),font=("Liberation Serif",20),bg='#3b784c', fg="#170404")
+                Label_Text_1.pack()
+
+                Bottom_Area= Frame(fenetre,bg='#3b784c',width=1000,height=50)
+                Bottom_Area.pack(expand=YES)
+                Bottom_Area.place(x=30,y=640)
+
+                Bottom_Area_Right= Frame(fenetre,bg='#3b784c',width=360,height=50)
+                Bottom_Area_Right.pack(expand=YES)
+                Bottom_Area_Right.place(x=600,y=640)
+
+
+                Bouton_Area= Frame(fenetre,bg='#3b784c',width=430,height=600)
+                Bouton_Area.pack()
+                Bouton_Area.place(x=550,y=20)
+
+                Label_Text_2 = Label(Bottom_Area,text="Version 1.0 Tobias Version Graphique (F) ",font=("Liberation Serif",10),bg='#3b784c', fg="#170404")
+                Label_Text_2.pack()
+
+                canvas = Canvas(Canvas_Area, width=485, height=500,bg='#232d32')
+                canvas.grid(row=0, column=0)
+
+                scroll_x = Scrollbar(Canvas_Area, orient="horizontal", command=canvas.xview,bg='#3b784c')
+                scroll_x.grid(row=1, column=0, sticky="ew")
+
+                scroll_y = Scrollbar(Canvas_Area, orient="vertical", command=canvas.yview,bg='#3b784c')
+                scroll_y.grid(row=0, column=1, sticky="ns")
+                canvas.create_text(250,20,
+                text=subprocess.getoutput("cat ~/Archetype/.NOTE.txt"),font=("Courrier"),fill="#acc3ce")
+                canvas.configure(yscrollcommand=scroll_y.set, xscrollcommand=scroll_x.set)
+
+
+                        #BOUTONS
+                Partie_Reseau = Button(fenetre, text="Réseau",font=("Courrier"),bg='#3b784c',fg="#170404",height=5,width=10,command=Thread_Reseau) #Quitter
+                Partie_Reseau.pack(expand=YES) #Padding et toute la Longueur X
+                Partie_Reseau.place(x=600,y=20)
+
+                Partie_Outils = Button(fenetre, text="Outils",font=("Courrier"),bg='#232d32',fg="#acc3ce",height=5,width=10,command=Thread_Outils) #Quitter
+                Partie_Outils.pack(expand=YES) #Padding et toute la Longueur X
+                Partie_Outils.place(x=760,y=20)
+
+                Bouton_Premiers_PAS = Button(fenetre, text="Restart",font=("Courrier"),bg='#3b784c',fg="#170404",height=5,width=10,command=First_of_All) #Quitter
+                Bouton_Premiers_PAS.pack(expand=YES) #Padding et toute la Longueur X
+                Bouton_Premiers_PAS.place(x=760,y=190)
+
+                Bouton_Sauvegarde = Button(fenetre, text="Sauvegarde",font=("Courrier"),bg='#3b784c',fg="#170404",height=5,width=10,command=Thread_Sauvegarde) #Quitter
+                Bouton_Sauvegarde.pack(expand=YES) #Padding et toute la Longueur X
+                Bouton_Sauvegarde.place(x=600,y=360)
+
+                Bouton_Archetype = Button(fenetre, text="Archetype",font=("Courrier"),bg='#232d32',fg="#acc3ce",height=5,width=10,command=Thread_Archetype) #Quitter
+                Bouton_Archetype.pack(expand=YES) #Padding et toute la Longueur X
+                Bouton_Archetype.place(x=600,y=190)
+
+                Bouton_Web = Button(fenetre, text="Web",font=("Courrier"),bg='#232d32',fg="#acc3ce",height=5,width=10,command=Thread_Internet) #Quitter
+                Bouton_Web.pack(expand=YES) #Padding et toute la Longueur X
+                Bouton_Web.place(x=760,y=360)
+
+                Bouton_Stealth = Button(Bottom_Area_Right, text="Stealth",font=("Courrier"),bg='#232d32',fg="#acc3ce",height=1,width=5,command=Page_Tobias_Stealth) #Quitter
+                Bouton_Stealth.pack(expand=YES) #Padding et toute la Longueur X
+                Bouton_Stealth.place(x=250,y=0)
+
+                        #RACCOURCIS
+                fenetre.bind("<Control-d>",lambda event:One_Man_Standing())
+                fenetre.bind("<Control-l>",lambda event:Standing())
+                fenetre.bind("<Control-s>",lambda event:Thread_BackBone())
+                fenetre.bind("<Control-S>",lambda event:Handle())
+                fenetre.bind("<Control-a>",lambda event:Thread_Archetype())
+                fenetre.bind("<Control-o>",lambda event:Thread_Outils())
+                fenetre.bind("<Control-r>",lambda event:Thread_Reseau())
+                fenetre.bind("<Control-m>",lambda event:Thread_Music())
+                fenetre.bind("<Control-c>",lambda event:Attestation())
+
+
+                #FENETRE PRINCIPALE
+                fenetre.mainloop()#Inéluctable
+
+        def Page_Authentification():
+
+                fenetre = Tk() #Créer la fênetre
+                fenetre.title("Authentification")#Titre de la fênetre
+                fenetre.geometry("480x360")#Dimensions
+                fenetre.minsize(500,600)#Tailles minimales et maximales
+                fenetre.config(background='#232d32')
+
+                        #FRAMES/INSTANCES
+
+                frame= Frame(fenetre,bg='#232d32')
+                frame.pack(expand=YES)
+
+                        #TEXTE
+
+                Label_Text_2 = Label(fenetre,text="Authentifiez Vous",font=("Courrier",20),bg='#232d32', fg="#acc3ce") #Fenetre , NAture , Place holder , contenu , police , font , couleur de police
+                Label_Text_2.pack(side=BOTTOM)
+
+                        #CHAMPS
+
+
+                        #TEXTE
+
+                Label_Text_4 = Label(frame,text="Mot de passe",font=("Courrier",15),bg='#232d32', fg="#acc3ce") #Fenetre , NAture , Place holder , contenu , police , font , couleur de police
+                Label_Text_4.pack()
+
+                        #CHAMPS
+
+                Password_Entry= Entry(frame,font=("Courrier,20"),bg='#16638a' , fg="Black")
+                Password_Entry.pack()
+
+
+                def fermer_programme(signal, frame):
+                        print("TOO BAD!")
+                        sys.exit(0)
+
+                def Authentification_Sans_Clé():
+
+                        self.MagicWord=os.environ["MDP"]
+                        mydb = mysql.connector.connect(
+                        host="localhost",
+                        user="Python",
+                        passwd=self.MagicWord,
+                        )
+
+                        Command=Recup("Passwords","Tobias_Authentification")
+
+                        Mot_de_passe_Entré=Password_Entry.get()
+                        Mot_de_passe_Entré=Mot_de_passe_Entré.encode()
+                        Mot_de_passe_chiffré = hashlib.sha1(Mot_de_passe_Entré).hexdigest()
+
+                        if Mot_de_passe_chiffré != Command:
+                                showinfo("Mince","Mauvais Mot de Passe")
+                                fermer_programme(signal.SIGINT, fermer_programme)
+                        else :
+                                showinfo("Yay","Mot de Passe Correct")
+                                fenetre.destroy()
+                                Page_Tobias()
+
+
+
+                def Authentification_Avec_Clé():
+
+                        if os.path.exists("/run/media/Utilisateur/STICK/Identification_Tobias") :
+                                with open("/run/media/Utilisateur/STICK/Identification_Tobias","r") as variable :
+                                        if variable.read()=="Conforme":
+                                                fenetre.destroy()
+                                                Tools().Notification("Clé détectée")
+                                                Page_Tobias()
+
+
+
+                Bouton_Valider = Button(frame, text="Valider",font=("Courrier"),bg='#16638a',fg="Black",command=Authentification_Sans_Clé) #PageWeb avec le nom de fonction
+                Bouton_Valider.pack(pady=25)
+
+                Authentification_Avec_Clé()
+                fenetre.mainloop()
+
+
+        Page_Authentification()
+
+                        #Possibilité de l'upload par internet WORK IN PROGRESS
+
+                        #Application téléphone WORK IN PROGRESS
+
+                        #Tor WORK IN PROGRESS
+
+                        #Télécharger des pacquets WORK IN PROGRESS
+
+                        #Interface à la suite de commande
+
+                        #MOT DE PASSE
+
+                        #Mode Stealth(plus petit)
+
+                        #Demander à l'utilisateur s'il veut enregistrer son paramètre et lui donner un nom
+
+                        #Tobias Full Console
+
+                        #Système le plus transparent nativement et le plus personnalisable ensuie
+
+                        #Menu réseau écran au milieu donnant les informations du réseau actuel en temps réel , chercher des actions réseau intéressantes
+
+                        #Riot , vérifie les connexions entrantes sur le réseau
+
+                        #Hub qui va gérer tout les pcs ( Base )
+
+                        #Socket entre pc , serveur et communiquant en même temps pour déterminer tout les pcs avec Tobias

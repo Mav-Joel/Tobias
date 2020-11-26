@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rm ./prgm;
+g++ *.cpp -o prgm && clear && ./prgm;

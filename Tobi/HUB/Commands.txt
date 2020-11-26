@@ -1,0 +1,44 @@
+#MUST HAVE
+pip3 install django
+pip3 install django-debug-toolbar
+
+#ADD THE TOOLBAR
+'django_toolbar',
+
+#CREATE A PROJET
+django-admin startproject NAME
+
+#MYSQL EXTENSION
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'DB_NAME',
+        'USER': 'DB_USER',
+        'PASSWORD': 'notmypassword',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+
+#RUN SERVER 
+./manage.py runserver
+
+#Interpréteur django
+./manage.py shell
+
+#CREER UNE APPLICATION
+django-admin startapp index
+
+#Vérifier les migrations
+./manage.py showmigrations
+
+#Faire les migrations
+./manage.py makemigrations
+
+#Éxécuter les migrations
+./manage.py migrate
+
+#Récupérer les anciennes bases
+python manage.py inspectdb > models.py
+./manage.py makemigrations
+python manage.py migrate

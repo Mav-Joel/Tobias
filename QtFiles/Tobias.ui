@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>663</width>
+    <height>277</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Tobias</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
+      <width>251</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Bitstream Vera Sans Mono</family>
+      <pointsize>20</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Bonjour Joel</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>90</y>
+      <width>261</width>
+      <height>111</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>663</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="defaultUp">
+    <bool>false</bool>
+   </property>
+   <widget class="QMenu" name="menuOutils">
+    <property name="title">
+     <string>Outils</string>
+    </property>
+    <addaction name="actionBloc_Note"/>
+    <addaction name="actionImport_Export"/>
+    <addaction name="actionHandler"/>
+   </widget>
+   <widget class="QMenu" name="menuR_seau">
+    <property name="title">
+     <string>Réseau</string>
+    </property>
+    <addaction name="actionLobby_2"/>
+    <addaction name="actionScan_R_seau"/>
+    <addaction name="actionPaquets"/>
+   </widget>
+   <widget class="QMenu" name="menuInternet">
+    <property name="title">
+     <string>Internet</string>
+    </property>
+    <addaction name="actionMail"/>
+    <addaction name="actionRecherche"/>
+    <addaction name="actionPage_Internet"/>
+   </widget>
+   <widget class="QMenu" name="menuStockage">
+    <property name="title">
+     <string>Stockage</string>
+    </property>
+    <addaction name="actionCoffre_Fort"/>
+    <addaction name="actionArchiver_2"/>
+    <addaction name="actionVeraCrypt"/>
+   </widget>
+   <widget class="QMenu" name="menuServeur">
+    <property name="title">
+     <string>Serveur</string>
+    </property>
+    <addaction name="actionLobby"/>
+    <addaction name="actionH_berger"/>
+   </widget>
+   <widget class="QMenu" name="menuConfiguration">
+    <property name="title">
+     <string>Configuration</string>
+    </property>
+    <addaction name="actionModifier_le_fichier_de_configuration"/>
+    <addaction name="actionVoice_Feedback"/>
+    <addaction name="actionModifier_une_base_de_donn_e"/>
+   </widget>
+   <widget class="QMenu" name="menuCreator">
+    <property name="title">
+     <string>Createur</string>
+    </property>
+    <addaction name="actionPage_Createur"/>
+   </widget>
+   <addaction name="menuOutils"/>
+   <addaction name="menuR_seau"/>
+   <addaction name="menuInternet"/>
+   <addaction name="menuStockage"/>
+   <addaction name="menuServeur"/>
+   <addaction name="menuConfiguration"/>
+   <addaction name="menuCreator"/>
+  </widget>
+  <action name="actionBloc_Note">
+   <property name="text">
+    <string>Bloc Note</string>
+   </property>
+  </action>
+  <action name="actionImport_Export">
+   <property name="text">
+    <string>Import/Export</string>
+   </property>
+  </action>
+  <action name="actionArchiver">
+   <property name="text">
+    <string>Archiver</string>
+   </property>
+  </action>
+  <action name="actionMail">
+   <property name="text">
+    <string>Mail</string>
+   </property>
+  </action>
+  <action name="actionRecherche">
+   <property name="text">
+    <string>Recherche</string>
+   </property>
+  </action>
+  <action name="actionCoffre_Fort">
+   <property name="text">
+    <string>Coffre Fort</string>
+   </property>
+  </action>
+  <action name="actionArchiver_2">
+   <property name="text">
+    <string>Archiver</string>
+   </property>
+  </action>
+  <action name="actionLobby">
+   <property name="text">
+    <string>Page Server</string>
+   </property>
+  </action>
+  <action name="actionLobby_2">
+   <property name="text">
+    <string>Page Réseau</string>
+   </property>
+  </action>
+  <action name="actionScan_R_seau">
+   <property name="text">
+    <string>Scan Réseau</string>
+   </property>
+  </action>
+  <action name="actionPaquets">
+   <property name="text">
+    <string>Paquets</string>
+   </property>
+  </action>
+  <action name="actionHandler">
+   <property name="text">
+    <string>Handler</string>
+   </property>
+  </action>
+  <action name="actionVeraCrypt">
+   <property name="text">
+    <string>VeraCrypt</string>
+   </property>
+  </action>
+  <action name="actionH_berger">
+   <property name="text">
+    <string>Héberger</string>
+   </property>
+  </action>
+  <action name="actionModifier_le_fichier_de_configuration">
+   <property name="text">
+    <string>Modifier le fichier de configuration</string>
+   </property>
+  </action>
+  <action name="actionPage_Createur">
+   <property name="text">
+    <string>Page Createur</string>
+   </property>
+  </action>
+  <action name="actionPage_Internet">
+   <property name="text">
+    <string>Page Internet</string>
+   </property>
+  </action>
+  <action name="actionVoice_Feedback">
+   <property name="text">
+    <string>Voice Feedback</string>
+   </property>
+  </action>
+  <action name="actionModifier_une_base_de_donn_e">
+   <property name="text">
+    <string>Modifier une base de donnée</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
