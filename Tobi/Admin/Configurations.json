@@ -7,13 +7,13 @@
         "allow/Deny access": "True"
       },
       "Riot": {
-        "authorized_keys": "True",
+        "authorized_keys": "False",
         "crontabCheck": "True",
         "connexions": "False",
-        "processus": "True"
+        "processus": "False"
       },
       "General": {
-        "AllyComputer": "True",
+        "AllyComputer": "False",
         "Internet Protocol": "True",
         "Langue": "En"
       },
