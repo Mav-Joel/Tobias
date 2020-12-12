@@ -1,0 +1,52 @@
+{
+  "Paths": [
+    {
+      "NetworkCSV": {
+        "path": "/home/joel/Archetype/Tobi/Settings/Network/Network.csv"
+      },
+      "importPath": {
+        "path": "/home/joel/Archetype/Tobi"
+      },
+      "ConfigurationJson": {
+        "path": "/home/joel/Archetype/Tobi/Settings/Main/Configurations.json"
+      },
+      "filesPathsJson": {
+        "path": "/home/joel/Archetype/Tobi/Settings/Paths/filesPaths.json"
+      },
+      "sysCommandsDirectory": {
+        "apacheHandler": "/home/joel/Archetype/Tobi/sysCommands/apacheHandler.bash",
+        "BasicInstalls": "/home/joel/Archetype/Tobi/sysCommands/BasicInstalls.bash",
+        "iptableHandler": "/home/joel/Archetype/Tobi/sysCommands/iptableHandler.bash",
+        "sshHandler": "/home/joel/Archetype/Tobi/sysCommands/sshHandler.bash",
+        "torHandler": "/home/joel/Archetype/Tobi/sysCommands/torHandler.bash",
+        "network": "/home/joel/Archetype/Tobi/sysCommands/network.bash"
+      },
+      "Images": {
+        "icon": "/home/joel/Archetype/Tobi/Ressources/Images/cadenas.jpg"
+      },
+      "Notes": {
+        "noteFile": "/home/joel/Archetype/Tobi/Locker/Notes/NOTES.txt"
+      },
+      "Archives": {
+        "path": "/home/joel/Archetype/Tobi/Archives"
+      },
+      "Executables": {
+        "packets": "/home/joel/Archetype/Tobi/Gui/packets.py"
+      },
+      "customDB": {
+        "bacboneCSV": "/home/joel/Archetype/Tobi/customDB/backbone.csv",
+        "coffreFortCSV": "/home/joel/Archetype/Tobi/customDB/coffreFort.csv",
+        "creatorCSV": "/home/joel/Archetype/Tobi/customDB/creator.csv",
+        "currentPcCSV": "/home/joel/Archetype/Tobi/customDB/currentPc.csv",
+        "HadesPY": "/home/joel/Archetype/Tobi/customDB/Hades.py",
+        "knownIpsCSV": "/home/joel/Archetype/Tobi/customDB/knownIps.csv",
+        "passwordsCSV": "/home/joel/Archetype/Tobi/customDB/passwords.csv",
+        "rapportExecutionCSV": "/home/joel/Archetype/Tobi/customDB/rapportExecution.csv",
+        "reseauCSV": "/home/joel/Archetype/Tobi/customDB/reseau.csv",
+        "servCommandsCSV": "/home/joel/Archetype/Tobi/customDB/servCommands.csv",
+        "serverCSV": "/home/joel/Archetype/Tobi/customDB/server.csv",
+        "unknownIpsCSV": "/home/joel/Archetype/Tobi/customDB/unknownIps.csv"
+      }
+    }
+  ]
+}

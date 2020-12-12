@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+	<!-- En tête -->
+	<head>
+        {% load static %}
+
+		<!-- Fichiers CSS -->
+		<link rel='stylesheet' type='text/css' href="{% static 'index/css/web.css' %}" media='screen' />
+		<!-- <link rel='stylesheet' type='text/css' href='./css/02_fonts.css' media='screen' /> -->
+
+		<!-- Fichiers Javascripts -->
+		<script type='text/javascript' src="{% static 'index/js/jquery-2.0.3.min.js' %}"></script>
+		<script type='text/javascript' src="{% static 'index/js/web.js' %}"></script>
+		<!-- Encodage UTF8 pour les accents --> 
+		<meta charset='UTF-8'>
+
+		<!-- Icône de l'onglet -->	
+		<link rel='icon' type='image/png' href="{% static 'index/images/favicon.png' %}"/>
+
+		<!-- Titre de l'onglet -->
+		<title>Page de connexion</title>
+	</head>
+    <section>
+        <article>
+            <h1>Bienvenue Joel</h1>
+        </article>
+        
+        <article>
+			<form action="/">
+  				<label for="fname">Authentication:</label><br>
+  				<input type="text" id="fname" value="John"><br><br>
+  				<input type="submit" value="Submit">
+			</form> 
+    
+        </article>
+
+    </section>

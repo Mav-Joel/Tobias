@@ -4,6 +4,27 @@ import getpass
 import os   
 import sys
 import json
+import threading
+ 
+sys.path.insert(1,"/home/joel/Archetype/Tobi")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Security")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Library")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/creatorFiles")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/System")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Violet")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Web")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Archives")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/customDB")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Gui")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Lancement")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Locker")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Settings")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/sysCommands")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/System")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Violet")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Web")
+
+
 Utilisateur=os.environ["USER"]
 
 class Ui_MainWindow(object):
@@ -12,7 +33,7 @@ class Ui_MainWindow(object):
 
         import mysql
         import mysql.connector
-        from Bibliotheque.TBook import Tools
+        from Library.TBook import Tools
         
         magicWords=Tools().getModuleData("local dbpassword","Tobias")
 
@@ -32,10 +53,10 @@ class Ui_MainWindow(object):
             for lettre in x :
                 self.featureContent.append(lettre)
 
-
     def start(self):
         import mysql
         import mysql.connector
+
         getCommands = []
         toDo = []
         item = self.listWidget.currentItem()
@@ -59,8 +80,6 @@ class Ui_MainWindow(object):
         joined_string = " ".join(list_of_strings)
        
         os.system(joined_string) 
-
-    
 
     def openLfW(self):
         from Lookfor import LookforWindow
@@ -120,8 +139,13 @@ class Ui_MainWindow(object):
         self.window.show()
         
     def openPacketWindow(self):
+        Utilisateur=os.environ["USER"]
+        sys.path.insert(1,f"/home/{Utilisateur}/Archetype/Tobi")
+        from Library.DBook import Database
+        
+        path = Database().getPaths('packets','Executables')
         print("Please write your password in the terminal")
-        os.system(f"sudo /home/{Utilisateur}/Archetype/Tobi/packets.py")
+        os.system(f"{path}")
 
     def openHandlerMainWindow(self):
         from Handler import handlerWindow 
@@ -140,8 +164,16 @@ class Ui_MainWindow(object):
         self.ui = RawWindow()
         self.ui.setupUi(self.window)
         self.window.show()
-        
+    
+    def openArchive(self):
+        from Archives.Archivist import Archivisty
+        from PyQt5 import QtCore, QtGui, QtWidgets
 
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Archivisty()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        
     def openPageStockageMainWindow(self):
         from Page_Stockage import pageStockageMainWindow
         from PyQt5 import QtCore, QtGui, QtWidgets
@@ -159,8 +191,7 @@ class Ui_MainWindow(object):
         self.ui = creatorWindow()
         self.ui.setupUi(self.window)
         self.window.show()
-
-    
+ 
     def openNotesWindow(self):
         from Notes import notesWindow
         from PyQt5 import QtCore, QtGui, QtWidgets
@@ -181,7 +212,10 @@ class Ui_MainWindow(object):
     
     def setupUi(self, MainWindow):
         from PyQt5 import QtCore, QtGui, QtWidgets
-        
+        sys.path.insert(1,f"/home/{Utilisateur}/Archetype/Tobi")
+        from Library.DBook import Database
+        image = Database().getPaths('icon','Images')
+     
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(553, 177)
        
@@ -190,7 +224,7 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(20, 20, 251, 81))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(f"/home/{Utilisateur}/Archetype/Tobi/Ressources/Images/cadenas.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(image), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         
         font = QtGui.QFont()
@@ -251,7 +285,8 @@ class Ui_MainWindow(object):
 
         self.actionArchiver = QtWidgets.QAction(MainWindow)
         self.actionArchiver.setObjectName("actionArchiver")
-       
+        self.actionArchiver.triggered.connect(self.openArchive)
+
         self.actionMail = QtWidgets.QAction(MainWindow)
         self.actionMail.setObjectName("actionMail")
         self.actionMail.triggered.connect(self.openMail)
@@ -265,6 +300,7 @@ class Ui_MainWindow(object):
         
         self.actionArchiver_2 = QtWidgets.QAction(MainWindow)
         self.actionArchiver_2.setObjectName("actionArchiver_2")
+        # self.actionArchiver_2.triggered.connect()
         
         self.actionLobby = QtWidgets.QAction(MainWindow)
         self.actionLobby.setObjectName("actionLobby")
@@ -286,9 +322,6 @@ class Ui_MainWindow(object):
         self.actionRaw.setObjectName("actionRAw")
         self.actionRaw.triggered.connect(self.openRawMainWindow)
         
-        self.actionVeraCrypt = QtWidgets.QAction(MainWindow)
-        self.actionVeraCrypt.setObjectName("actionVeraCrypt")
-      
         self.actionH_berger = QtWidgets.QAction(MainWindow)
         self.actionH_berger.setObjectName("actionH_berger")
         
@@ -324,7 +357,7 @@ class Ui_MainWindow(object):
        
         self.menuStockage.addAction(self.actionCoffre_Fort)
         self.menuStockage.addAction(self.actionArchiver_2)
-        self.menuStockage.addAction(self.actionVeraCrypt)
+        self.menuStockage.addAction(self.actionArchiver)
 
         
         self.menuServeur.addAction(self.actionLobby)
@@ -380,7 +413,7 @@ class Ui_MainWindow(object):
         self.actionPaquets.setText(_translate("MainWindow", "Paquets"))
         self.actionHandler.setText(_translate("MainWindow", "Handler"))
         self.actionRaw.setText(_translate("MainWindow", "Raw"))
-        self.actionVeraCrypt.setText(_translate("MainWindow", "VeraCrypt"))
+        self.actionArchiver.setText(_translate("MainWindow", "Archiver"))
         self.actionH_berger.setText(_translate("MainWindow", "Transférer"))
         self.actionModifier_le_fichier_de_configuration.setText(_translate("MainWindow", "Modifier le fichier de configuration"))
         self.actionPage_Createur.setText(_translate("MainWindow", "Page Createur"))
@@ -412,6 +445,10 @@ class ByPass(Ui_MainWindow):
             sys.exit(0)
 
     def setupUi(self, MainWindow):
+        sys.path.insert(1,f"/home/{Utilisateur}/Archetype/Tobi")
+        from Library.DBook import Database
+        image = Database().getPaths('icon','Images')
+
         self.MainWindow = MainWindow
         from PyQt5 import QtCore, QtGui, QtWidgets
         MainWindow.setObjectName("MainWindow")
@@ -433,7 +470,7 @@ class ByPass(Ui_MainWindow):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(320, 20, 161, 191))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap(f"/home/{Utilisateur}/Archetype/Tobi/Ressources/Images/cadenas.jpg"))
+        self.label.setPixmap(QtGui.QPixmap(image))
         self.label.setObjectName("label")
         self.radioButton = QtWidgets.QRadioButton(self.centralwidget)
         self.radioButton.setGeometry(QtCore.QRect(150, 160, 105, 22))
@@ -465,10 +502,11 @@ class ByPass(Ui_MainWindow):
         self.pushButton.setText(_translate("MainWindow", "Login"))
 
 class Tobias(ByPass):
-
     
     def __init__(self):
-        
+        from Library.DBook import Database        
+        self.confs = Database().getPaths('path','ConfigurationJson')
+        self.networkB = Database().getPaths('network','sysCommandsDirectory')
         from PyQt5 import QtCore, QtGui, QtWidgets
 
         self.user=os.environ["USER"] #User's name
@@ -477,10 +515,6 @@ class Tobias(ByPass):
         if len(sys.argv) > 1 :
             if sys.argv[1] == "Start":
                 self.firstStartSequence() #Working
-            elif sys.argv[1] == "Reset" :
-                self.reset()
-            elif sys.argv[1] == "Config" :
-                print(self.getTextConfig())
             elif sys.argv[1] == "Terminal" :
                 # self.terminalMode()
                 pass
@@ -536,15 +570,15 @@ class Tobias(ByPass):
             }
         ]
         }
-        with open(f"/home/{Utilisateur}/Archetype/Tobi/Admin/Configurations.json","w") as config :
+        with open(f"{self.confs}","w") as config :
             json.dump(newConfig,config,indent=2)
         
         from launcher import firstPart
         from launcher import PromptWindow
         firstPart().fromZeroToHero() #Work in Progress
 
-        from Bibliotheque.NBook import Network
-        from Bibliotheque.DBook import Database
+        from Library.NBook import Network
+        from Library.DBook import Database
         from Backbone import Backbone
         from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -558,8 +592,7 @@ class Tobias(ByPass):
         #Creates and deploy databases
         firstPart().createDatabases() #Works
         
-        os.system("/home/{}/Archetype/Tobi/systembuds/network.bash".format(self.user))
-
+        os.system(f"{self.networkB}")
        
         #First Start interface and input password
         Database("backbone","id","statut","ipAddress","NULL","Allowed",f"{Network().myIp('ip')}").insertInDatabase()
@@ -586,11 +619,7 @@ class Tobias(ByPass):
 
         PromptWindow()
         
-    def startSequence(self):
-        pass
-        
     def threads(self,something):
-        import threading
         mon_thread=threading.Thread(target=something)   #définit la fonction a executer en arrière-plan
         mon_thread.start()    #lance la fonction, sans faire freeze la fenêtre
 
@@ -601,13 +630,11 @@ class Tobias(ByPass):
         from RawNetwork import Ally_Computers,internetProtocol
         from Backbone import Backbone
         from Riot import Security
-        from Bibliotheque.NBook import Network
+        from Library.NBook import Network
 
 
         """ Execute every methods in order to make them properly available to the user """
                
-        
-
         print("Launching loopSequence")
         
        
@@ -637,11 +664,13 @@ class Tobias(ByPass):
                 self.threads(Security().Processus())
             
             #RawNetwork
-            if self.getModuleData("AllyComputer","General") == "True" :
-                self.threads(Ally_Computers().Main())
+          #  if self.getModuleData("AllyComputer","General") == "True" :
+           #     self.threads(Ally_Computers().Main())
     
             if self.getModuleData("Internet Protocol","General") == "True" :
-                internetProtocol().Main()
+                self.threads(internetProtocol().Main())
+            
+            #Sauvegarde
 
             time.sleep(0.2)
 
@@ -653,9 +682,6 @@ class Tobias(ByPass):
             Make sure everything is ready to be closed and close it """
         pass
 
-    def reset(self):
-        os.system("mysql -u Python -p$MDP -D tobiasdb -e 'DROP DATABASE tobiasdb'")
-    
     def rawMode(self):
         
         print("Launching Raw Mode")
@@ -664,18 +690,9 @@ class Tobias(ByPass):
         
         pass
 
-    def uninstall(self):
-        pass
-      
-    #CONFIGURATIONS
-
-    def getTextConfig(self):
-        with open(f"/home/{Utilisateur}/Archetype/Tobi/Admin/Configurations.json","r") as variable :
-            return variable.read()
-
     def getModuleData(self,searchingFor,fieldName='user'):
         import json
-        with open(f"/home/{Utilisateur}/Archetype/Tobi/Admin/Configurations.json","r") as config :
+        with open(f"{self.confs}","r") as config :
             content = json.load(config)
 
         for parameters in content['Configurations'] :
@@ -683,8 +700,8 @@ class Tobias(ByPass):
                 if searchingFor == keys :
                     return values
 
+
 #Tobias Main Task
-    
 if __name__ == "__main__":
     Tobias()
         

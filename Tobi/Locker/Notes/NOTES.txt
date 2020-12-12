@@ -1,0 +1,316 @@
+pip3 install django
+pip3 install django-debug-toolbar
+sudo pacman -S mariadb
+sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+systemctl enable mysqld
+systemctl start mysqld
+pip3 install nmap
+
+LOGIN : ETUDIANT
+Mot de passe : iutRT2019.
+https://vmware.iut-kourou.fr
+
+joel.toula@etu.univ-guyane.com
+F1!
+	https://dnschecker.org/mac-lookup.php	
+
+Site schéma :
+draw.io
+
+À Acheter
+Samsung Odyssey G7 27" * 2
+Razer Viper Utimate 169€
+Goliathus extended stormtrooper 40€
+Razer Tartarus Pro 150€
+Razer Chroma Hardware development kit 90€
+Razer Base Station Chrmoa 75€
+Razer Sila 300€
+Razer Protective 15.6 50€
+Razer Laptop Stand Chroma 110€
+Razer Razer Rogue 13.3 et 15.6 Backpack V2 65€
+et 119€
+Razer Custom Phone case 50€
+Baroque
+Razer Raptor *2 = 1398$
+Total Razer de ~= 2616€
+Bose Casque SoundComm B40 750€
+Shield TV PRO NVIDIDA 219
+2* Shield Controller 69€
+Shield Stand 25€
+TV QLED 82Q60R Quantum Dot 3500€
+TV the Frame QLED 55" 2019 1500€
+IPAd Pro 12" 1300€
+Apple Pencil 135€
+Smart Folio APple 119€
+PC Bureau 1 5000€
+Home Cinema Bose Lifestyle 650 4500€
+Total = 19802€
+
+
+Switch(config)#mac adress-able static AAAA AAAA AAAA vlan 10 interface Fe0/1
+Switch config# interface FAstEthernet 0/1
+Switch config# switchprot port-security
+Switch config# switchport port security man address 000.000.001
+
+Créer un fichier qui rsync
+Créer un fichier qui vérifie les entrés de programmes
+via des balisse
+Programme qui crée le backup des deux autres
+1 Charactère = 1 octets
+C , Bash , HTML , CSS , PytHON , SQL 
+
+Refaire Courtesy
+Voir .Acquisition
+Voir Chase
+Terminer Jaeger et Thermite
+
+Réd
+
+D'après ces textes nous pouvons dissimuler notre identité étant donné que nous pouvons être n'importe qui ,
+dire n'importe quoi comme on peut le voir dans le document 1 
+OU BIEN usurper l'identité de quelqu'un permettant de dissimuler la sienne comme le témoigne le document 2. 
+
+Se dissimuler d'après le document 1 permettrait de devenir la personne qu'on souhaite devenir afin de satisfaire quelqu'un .
+Se dissiumler d'après le document 2 permet d'assouvir ses désirs maquiavélique , porter atteinte publiquement à une personne
+
+Les risques liés à cette dissimulation sont d'être découvert et d'être puni , perdre son "amour" dans le document 1 ou encore subir des 
+poursuites grave pour usurpation d'identité dans le document 2 
+
+DOC 3 ET 4
+
+daprès les textes , l'usage d'internet dans le but de nuire ou encore de détourner la confiance d'utilisateur à utilisateur à de mauvaises
+fins est redouté par certaines personnes , 
+Notemment les parents vis à vis de leurs enfants.
+
+Cette méfiance envers internet est compréhensible mais à mon sens peu pertinente , étant donné que oui il peut y avoir du  harcelement en reprennant l'exemple
+des enfants à l'école , NEANMOINS , internet est moyen de communiquer, ce qu'il se passe sur internet est une extension de ce qui se passe en réalité
+c'est à dire que , un enfant avec ou sans internet se fera harceler , peut être pas au même niveau mais quand même , internet n'est pas une source de méfiance
+en soit cependant les utilisateurs qui utilisent internet peuvent être dangereux .
+ET PUIS FRANCHEMENT , un gamin qui se fait harceler à l'école , ça va le suivre dans la cours de récréation , dans les cours , dans les pauses etc...
+il est vrai que l'ont peut penser que le cyberharcelement est plus pesant que l'harcelement normal étant donné qu'il suit l'enfant ou l'adulte à la maison ,
+C.E.P.E.N.D.A.N.T il y a un bouton génial qui s'appele bloquer, ou bien un bon sens qui s'appelle je ferme mon téléphone ou ma page internet et à partir de ce
+moment , bye bye cyberharcelement PAR CONTRE l'école sera toujours aussi dur .
+hey man
+  
+                                while subprocess.getoutput("ls /media/{}/*".format(Utilisateur)) != "ls: impossible d'accéder à '/media/{}/*': Aucun fichier ou dossier de ce type" .format(Utilisateur) :
+                                        pass
+
+
+Pouvons-nous faire confiance aux réseaux sociaux ?
+
+Les réseaux sociaux sont des acteurs permettant de nuire
+
+ - Document 1 
+ - Document 2 
+ - Document 3 
+
+Corrélation n'est pas causalité 
+
+ - Document 4 
+ - Document 3 
+
+        Pouvons-nous faire confiance aux réseaux sociaux ?
+
+        Tout d'abord , sur internet notre identité est facilement modifiable , tout le monde peut se faire passer pour tout le monde uniquement
+        en changeant de pseudonyme ou en s'inventant une vie. cette identité modifiée peut être utilisée à des fins personnels dans un cercle
+        très réduit de connaissanses exemple dans une conversation entre 2 personnes , ou bien dans un plus grand cercle l'action de
+        l'usurpateur pourrait avoir des répercussions conséquentes . Une question de confiance réelle se pose donc , savez-vous à qui 
+        vous êtes en train de parler et de partager des informations sensibles qui parraissent anodines ? Tout ceci passe à travers les réseaux
+        sociaux , en effet les internautes ont la tendance de faire confiance aveuglément à la personne à laquelle il parle ce , il s'âgit d'un concept nommé thick trust
+        qui est d'ailleurs incité par internet . Se pose aussi la question des informations privées telles que numéro de carte bancaire , antécédents
+        médicaux etc... qui peuvent être conservés par les différents sites que l'internaute utilise régulièrement.
+
+        Cependant , Corrélation n'est pas causalité , par exemple différentes études ont montrée que le harcèlement à l'école n'avait ni augmenté
+        ni diminué avec l'arrivée des réseaux sociaux , en effet les parents semblent porter en bouc émissaire les réseaux sociaux , néanmoins
+        les enfants eux-mêmes décrivent bien les situations de harcèlement en disant qu'elles sont vécues à l'école et non sur internet  .
+        A vrai dire il ne faut pas se voiler la face, mensonge , déception et harcèlement ne sont pas nées au 21ème siècle. Les réseaux sociaux sont
+        des environnements dans lesquels les usagers devraient se sentir libre d'échanger.
+
+        Pour conclure , les réseaux sociaux sont un espace où tous les utilisateurs du monde peuvent se rejoindre et échanger 
+        les réseaux sociaux n'ont pas étés crées dans un mauvais but , néanmoins tous les réseaux sociaux sont différents et quelques 
+        être humains souhaitent parfois le mal à leur prochain 
+
+Formulaire à remplir
+CREATE TABLE IF NOT EXISTS BackBone ( 
+                id INT UNSIGNED NOT NULL AUTO_INCREMENT, 
+                Statut VARCHAR(200) NOT NULL, 
+                Adresse_IP VARCHAR(100) NOT NULL, 
+                PRIMARY KEY (id)
+                )")
+pyshark
+
+Handler , rajouter des commandes
+Audio handler
+https://httpbin.org
+
+Epita ( Paris ) https://www.epita.fr/live/ 
+Epitech 
+Supinfo
+Epsi
+Ecole 42 
+Monitoring de site web Tobias
+Rajouter des informations dans Configuration 
+Phase d'initialisation
+Disney+ & canal = F2
+Fiche de contact
+Modifier certaines base de données
+Crontab Riot
+https://realpython.com/working-with-files-in-python/
+https://realpython.com/python-send-email/
+getpass
+
+
+
+
+DEFINIR CHEMIN FIRSTSTART
+
+FROM ZERO TO HERO / HUB 
+CREATEUR
+SITE
+REDO
+PAGE PAQUET
+
+Page BackBone à faire
+
+Base de donnée complète fichier
+
+Revoir le système de création de compte et d'installation
+
+Les règles de l'interpréteur
+Mode Anglais à faire
+1 Page préréglages par page normal
+
+Riot
+
+Load Profile in the firststart module
+
+Sauvegarder sa version sur le HUB
+Double CLic sur les trucs du mode créateur
+
+ 
+Page Stocker needs a redo
+
+Améliorer l'affichage d'ajouter un ordinateur #Server
+
+Ally computers like Jean
+
+Crypting with python
+
+ldapserach 
+-x = Authentification
+-h  = Hôte alternatif sur lequel le serveur ldap tourne 
+@ip est donc l'ip de ce serveur
+-b utilise la base défini en argument pour la recherche au lieu de la recherche par défaut
+
+1) S'authentifier , utiliser l'hôte 10.100.0.1 , Utiliser comme base de recherche "dc=iut-kourou,dc=fr", afficher toute l'arborescence inférieur avec le filtre nom commun = n'importe quoi avec e ou uid=ge suivi de * , Afficher l'uid , le mail et sn .
+
+ldapsearch -x -h 10.100.0.1 -b "dc=iut-kourou,dc=fr" -s sub "(sn=*wi*)" gn
+
+ldapsearch -x -h 10.100.0.1 -b "ou=Groups,dc=iut-kourou,dc=fr" -s sub cn
+
+ldapsearch -x -h 10.100.0.1 -b "ou=Groups,dc=iut-kourou,dc=fr" -s sub "(cn=Classe_Rt2)" memberUid
+
+
+Un arc de cercle se voit , Filtre bas	
+
+L diminue plus la longueur du câble augmente
+L augmente énormément en augmentant le nombre de spire
+
+4,82
+0,0048
+12nF
+Addition des deux
+password
+add fast and slow mode 
+Faire une page d'installation supplémentaire
+
+Etablir des configurations en fonction des lieux
+Refaire multi task pc
+Dans les éléments secondaire rajouter VAULT CREATOR
+
+finir Jean proprement
+Willy
+kyjt7kKzJXrisFyD4s
+Faire 2 tailles au dessus pour le bloc note
+AllyComputer
+CheckCode
+Add django to Handler
+Lundi 9h Jean
+Bibliotheque
+198.51.100.101
+get Usefull information from A crypted File
+Keyring système
+joelt#old57957 
+10h22 95%
+Rajouter Tails pour le prochain server VPN
+Clear ip bgp
+
+Réseau ip source / Port du service demandé / Vérifier si le flux est autorisé ou non 
+access-list 10 permit 192.168.30.0 0.0.255
+access-list 103 permit tcp 192.168.30.0 0.0.0.255 any eq 80 
+
+#SNMP
+V3 plus sûr , authentification et encapsulation
+root
+centreon
+Mémoire agent
+info cpu agent 
+Espace Disque 
+Addresse Ip 
+Améliorer getFromDB 
+Revoir tout le code
+Multiprocessing
+passer sur du Cpython
+Recherche real python
+Nouveau Design
+toulajoel	
+GrpAmPMaverick1
+
+
+Séquences d'envoi : 
+Email de d'emission
+Email de destination
+Message
+sujet
+contenu
+Port d'envoi 
+mot de passe
+connexion au serveur smtplit avec smtp.iut-kourou.home
+port et ssl . connexion au server et envoi du mal
+
+POP stock sur un appreil et les emails ne sont disponible que depuis 1 appareil 
+alors que Imap permet de stocké , d'envoyé et de synchroniser les emails sur différents appareils
+
+2) 
+From :toukanprive.univ-guyane.fr 
+To :jean-pierre.william@univ-guyane.fr
+
+localhost
+toucan.guyane.univ-ag.fr
+mxb2-2.relay.renater.fr
+toucan.guyane.univ-ag.fr
+ mxb1-1.relay.renater.fr
+ mail-qg0-x22b.google.com
+
+Le message est réelleent reçu par qgad10
+
+b. Bonjour = Ym9uam91cgo=	
+
+TP)
+
+#WIFI IUT
+Wifi-L@p3tu
+ 
+78:0c:b8:47:b2:56
+
+Mercredi finir le tp
+Si sur wifi
+Sinon etc...
+10.102.2G.1
+sudo docker load --input nomFichier
+sudo docker image save -o ./nomFichier nomImage
+https://estore.wacom.com/fr-FR/one-by-wacom-medium-s-ctl-672-s.html
+
+La modulation FEC a été utilisé
+d
+Manage my playlists

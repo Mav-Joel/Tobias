@@ -1,0 +1,5 @@
+git config --global user.name "joel"
+git config --global user.email "joel.toula@gmail.com"
+git remote add Blade SSH git@github.com:Mav-Joel/projet.git
+git branch -M main
+git push -u Blade main --verbose
