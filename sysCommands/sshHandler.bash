@@ -2,6 +2,7 @@
 echo """Script de contrôle de serveur Ssh""" 
 
 getLinuxVersion=$(lsb_release -a | egrep "Manjaro")
+me=$(whoami)
 
 if [[ -z "$1" ]] ; #Vérification arguments
 then    
@@ -37,7 +38,7 @@ then
     elif [[ $1 == "Test" ]]; #Tester l'ensemble de la configuration Apache et hôtes virtuels
     then
 
-        ssh $USER@127.0.0.1 && echo " [+] Ssh Server Tests : Done"
+        ssh $me@127.0.0.1 && echo " [+] Ssh Server Tests : Done"
   
     fi 
     
@@ -73,7 +74,7 @@ else
     elif [ $1 == "Test" ]; #Tester l'ensemble de la configuration Apache et hôtes virtuels
     then
 
-        ssh $USER@127.0.0.1 && echo " [+] Ssh Server Tests : Done"
+        ssh $me@127.0.0.1 && echo " [+] Ssh Server Tests : Done"
 
     elif [ $1 == "Status" ];
     then

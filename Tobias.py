@@ -1,64 +1,67 @@
 #!/usr/bin/env python3
 #-*-coding:utf-8-*-
-
-""" Native modules importations"""
-
-import os
+import getpass
+import os   
 import sys
-import json 
-import mysql
-import mysql.connector
+import json
+import threading
+ 
+sys.path.insert(1,"/home/joel/Archetype/Tobi")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Security")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Library")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/creatorFiles")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/System")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Violet")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Web")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Archives")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/customDB")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Gui")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Lancement")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Locker")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Settings")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/sysCommands")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/System")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Violet")
+sys.path.insert(1,"/home/joel/Archetype/Tobi/Web")
 
-# from Backbone import *
-from firstStart import PromptWindow
-from firstStart import *
-# from Riot import *
 
-# from Bibliotheque.NBook import *
-# from PyQt5 import QtCore, QtGui, QtWidgets
-# from Page_Reseau import pageReseauUI
-# from Page_Stockage import *
-# from Notes import notesWindow
-# from RawNetwork import *    
-# from RawNetwork import internetProtocol  
-# from Creator import creatorWindow
-# from Page_Stockage import pageStockageMainWindow
-# from importExport import importExportWindow
-# from Handler import handlerWindow
-# from SendMail import sendMailWindow
-# from ToDoFrom import toDoFromWindow
-# from Page_Serveur import ServerWindow
-# from Page_Configuration import confWIndow
-# from Rapport import rapportWindow
-# from Lookfor import LookforWindow
-
-user=os.environ["USER"] 
-magicWords=os.environ["MDP"]
-
-featureContent=[]
-
-mydb = mysql.connector.connect(
-host="localhost",
-user="Python",
-passwd=magicWords,
-)
-
-Command = mydb.cursor() 
-Command.execute("USE tobiasdb") 
-Command.execute("SELECT DISTINCT(name) FROM creator WHERE type='Feature'")
-
-for x in Command:
-    for lettre in x :
-        featureContent.append(lettre)
+Utilisateur=os.environ["USER"]
 
 class Ui_MainWindow(object):
 
+    def __init__(self):
+
+        import mysql
+        import mysql.connector
+        from Library.TBook import Tools
+        
+        magicWords=Tools().getModuleData("local dbpassword","Tobias")
+
+        #Display
+        self.featureContent=[]
+        self.mydb = mysql.connector.connect(
+        host="localhost",
+        user="Python",
+        passwd=magicWords,
+        )
+
+        Command = self.mydb.cursor() 
+        Command.execute("USE tobiasdb") 
+        Command.execute("SELECT DISTINCT(name) FROM creator WHERE type='Feature'")
+
+        for x in Command:
+            for lettre in x :
+                self.featureContent.append(lettre)
+
     def start(self):
+        import mysql
+        import mysql.connector
+
         getCommands = []
         toDo = []
         item = self.listWidget.currentItem()
       
-        Command = mydb.cursor() 
+        Command = self.mydb.cursor() 
         Command.execute("USE tobiasdb") 
         Command.execute("SELECT command FROM creator WHERE type='Feature' AND name='{}'".format(item.text()))
         for x in Command : 
@@ -66,7 +69,7 @@ class Ui_MainWindow(object):
                 getCommands.append(lettre)
 
         for i in range(0,len(getCommands)):
-            Command = mydb.cursor() 
+            Command = self.mydb.cursor() 
             Command.execute("USE tobiasdb") 
             Command.execute("SELECT command FROM creator WHERE name='{}'".format(getCommands[i]))
             for x in Command : 
@@ -78,8 +81,10 @@ class Ui_MainWindow(object):
        
         os.system(joined_string) 
 
-
     def openLfW(self):
+        from Lookfor import LookforWindow
+        from PyQt5 import QtCore, QtGui, QtWidgets
+
     
         self.window = QtWidgets.QMainWindow()
         self.ui = LookforWindow()
@@ -87,30 +92,46 @@ class Ui_MainWindow(object):
         self.window.show()  
 
     def openRapportWindow(self):
+        from PyQt5 import QtCore, QtGui, QtWidgets
+        from Rapport import rapportWindow
+
         self.window = QtWidgets.QMainWindow()
         self.ui = rapportWindow()
         self.ui.setupUi(self.window)
         self.window.show()
         
     def openConfigWindow(self):
+        from Page_Configuration import confWIndow
+        from PyQt5 import QtCore, QtGui, QtWidgets
+
+
         self.window = QtWidgets.QMainWindow()
         self.ui = confWIndow()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openServerWindow(self):
+        from Page_Serveur import ServerWindow
+        from PyQt5 import QtCore, QtGui, QtWidgets
+
         self.window = QtWidgets.QMainWindow()
         self.ui = ServerWindow()
         self.ui.setupUi(self.window)
         self.window.show()
         
     def openTodoFrom(self):
+        from ToDoFrom import toDoFromWindow
+        from PyQt5 import QtCore, QtGui, QtWidgets
+
+
         self.window = QtWidgets.QMainWindow()
         self.ui = toDoFromWindow()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openMail(self):
+        from SendMail import sendMailWindow
+        from PyQt5 import QtCore, QtGui, QtWidgets
 
         self.window = QtWidgets.QMainWindow()
         self.ui = sendMailWindow()
@@ -118,24 +139,44 @@ class Ui_MainWindow(object):
         self.window.show()
         
     def openPacketWindow(self):
+        Utilisateur=os.environ["USER"]
+        sys.path.insert(1,f"/home/{Utilisateur}/Archetype/Tobi")
+        from Library.DBook import Database
+        
+        path = Database().getPaths('packets','Executables')
         print("Please write your password in the terminal")
-        os.system("sudo /home/joel/Archétype/Tobi/packets.py")
+        os.system(f"{path}")
 
     def openHandlerMainWindow(self):
+        from Handler import handlerWindow 
+        from PyQt5 import QtCore, QtGui, QtWidgets
 
         self.window = QtWidgets.QMainWindow()
         self.ui = handlerWindow()
         self.ui.setupUi(self.window)
         self.window.show()
-        
-    def openImportExportMainWindow(self):
     
+    def openRawMainWindow(self):
+        from Raw import RawWindow 
+        from PyQt5 import QtCore, QtGui, QtWidgets
+
         self.window = QtWidgets.QMainWindow()
-        self.ui = importExportWindow()
+        self.ui = RawWindow()
         self.ui.setupUi(self.window)
         self.window.show()
+    
+    def openArchive(self):
+        from Archives.Archivist import Archivisty
+        from PyQt5 import QtCore, QtGui, QtWidgets
 
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Archivisty()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        
     def openPageStockageMainWindow(self):
+        from Page_Stockage import pageStockageMainWindow
+        from PyQt5 import QtCore, QtGui, QtWidgets
         
         self.window = QtWidgets.QMainWindow()
         self.ui = pageStockageMainWindow()
@@ -143,14 +184,17 @@ class Ui_MainWindow(object):
         self.window.show()
 
     def opencreatorWindow(self):
+        from Creator import creatorWindow
+        from PyQt5 import QtCore, QtGui, QtWidgets
         
         self.window = QtWidgets.QMainWindow()
         self.ui = creatorWindow()
         self.ui.setupUi(self.window)
         self.window.show()
-
-    
+ 
     def openNotesWindow(self):
+        from Notes import notesWindow
+        from PyQt5 import QtCore, QtGui, QtWidgets
         
         self.window = QtWidgets.QMainWindow()
         self.ui = notesWindow()
@@ -158,21 +202,20 @@ class Ui_MainWindow(object):
         self.window.show()
 
     def openWindows(self):
+        from Page_Reseau import pageReseauUI
+        from PyQt5 import QtCore, QtGui, QtWidgets
         
         self.window = QtWidgets.QMainWindow()
         self.ui = pageReseauUI()
         self.ui.setupUi(self.window)
         self.window.show()
     
-    def openFirstStart(self):
-       
-        self.window = QtWidgets.QMainWindow()
-        self.ui = window()
-        self.ui.setupUi(self.window)
-        self.window.show()
-
-
     def setupUi(self, MainWindow):
+        from PyQt5 import QtCore, QtGui, QtWidgets
+        sys.path.insert(1,f"/home/{Utilisateur}/Archetype/Tobi")
+        from Library.DBook import Database
+        image = Database().getPaths('icon','Images')
+     
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(553, 177)
        
@@ -180,6 +223,9 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(20, 20, 251, 81))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(image), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         
         font = QtGui.QFont()
         font.setFamily("Bitstream Vera Sans Mono")
@@ -196,8 +242,8 @@ class Ui_MainWindow(object):
         self.listWidget.setObjectName("listWidget")
         self.listWidget.itemDoubleClicked.connect(self.start)
 
-        for i in range(0,len(featureContent)):
-            self.listWidget.insertItem(i,featureContent[i])
+        for i in range(0,len(self.featureContent)):
+            self.listWidget.insertItem(i,self.featureContent[i])
       
         MainWindow.setCentralWidget(self.centralwidget)
         
@@ -236,14 +282,11 @@ class Ui_MainWindow(object):
         self.actionBloc_Note = QtWidgets.QAction(MainWindow)
         self.actionBloc_Note.setObjectName("actionBloc_Note")
         self.actionBloc_Note.triggered.connect(self.openNotesWindow)
-       
-        self.actionImport_Export = QtWidgets.QAction(MainWindow)
-        self.actionImport_Export.setObjectName("actionImport_Export")
-        self.actionImport_Export.triggered.connect(self.openImportExportMainWindow)
 
         self.actionArchiver = QtWidgets.QAction(MainWindow)
         self.actionArchiver.setObjectName("actionArchiver")
-       
+        self.actionArchiver.triggered.connect(self.openArchive)
+
         self.actionMail = QtWidgets.QAction(MainWindow)
         self.actionMail.setObjectName("actionMail")
         self.actionMail.triggered.connect(self.openMail)
@@ -257,6 +300,7 @@ class Ui_MainWindow(object):
         
         self.actionArchiver_2 = QtWidgets.QAction(MainWindow)
         self.actionArchiver_2.setObjectName("actionArchiver_2")
+        # self.actionArchiver_2.triggered.connect()
         
         self.actionLobby = QtWidgets.QAction(MainWindow)
         self.actionLobby.setObjectName("actionLobby")
@@ -274,9 +318,10 @@ class Ui_MainWindow(object):
         self.actionHandler.setObjectName("actionHandler")
         self.actionHandler.triggered.connect(self.openHandlerMainWindow)
         
-        self.actionVeraCrypt = QtWidgets.QAction(MainWindow)
-        self.actionVeraCrypt.setObjectName("actionVeraCrypt")
-      
+        self.actionRaw = QtWidgets.QAction(MainWindow)
+        self.actionRaw.setObjectName("actionRAw")
+        self.actionRaw.triggered.connect(self.openRawMainWindow)
+        
         self.actionH_berger = QtWidgets.QAction(MainWindow)
         self.actionH_berger.setObjectName("actionH_berger")
         
@@ -297,8 +342,8 @@ class Ui_MainWindow(object):
        
         self.menuOutils.addAction(self.actionBloc_Note)
 
-        self.menuOutils.addAction(self.actionImport_Export)
         self.menuOutils.addAction(self.actionHandler)
+        self.menuOutils.addAction(self.actionRaw)
        
         self.menuR_seau.addAction(self.actionLobby_2)
         self.menuR_seau.addAction(self.actionPaquets)
@@ -312,7 +357,7 @@ class Ui_MainWindow(object):
        
         self.menuStockage.addAction(self.actionCoffre_Fort)
         self.menuStockage.addAction(self.actionArchiver_2)
-        self.menuStockage.addAction(self.actionVeraCrypt)
+        self.menuStockage.addAction(self.actionArchiver)
 
         
         self.menuServeur.addAction(self.actionLobby)
@@ -336,6 +381,8 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
+        from PyQt5 import QtCore
+        
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Tobias"))
         self.label.setText(_translate("MainWindow", "Bonjour Joel"))
@@ -351,7 +398,6 @@ class Ui_MainWindow(object):
         self.actionBloc_Note.setStatusTip(_translate("MainWindow", "Opens the Bloc Note"))
         self.actionBloc_Note.setShortcut(_translate("MainWindow", "Ctrl+n"))
 
-        self.actionImport_Export.setText(_translate("MainWindow", "Import/Export"))
         self.actionArchiver.setText(_translate("MainWindow", "getFromDB"))
         self.actionMail.setText(_translate("MainWindow", "Mail"))
         self.actionRecherche.setText(_translate("MainWindow", "Recherche"))
@@ -366,7 +412,8 @@ class Ui_MainWindow(object):
 
         self.actionPaquets.setText(_translate("MainWindow", "Paquets"))
         self.actionHandler.setText(_translate("MainWindow", "Handler"))
-        self.actionVeraCrypt.setText(_translate("MainWindow", "VeraCrypt"))
+        self.actionRaw.setText(_translate("MainWindow", "Raw"))
+        self.actionArchiver.setText(_translate("MainWindow", "Archiver"))
         self.actionH_berger.setText(_translate("MainWindow", "Transférer"))
         self.actionModifier_le_fichier_de_configuration.setText(_translate("MainWindow", "Modifier le fichier de configuration"))
         self.actionPage_Createur.setText(_translate("MainWindow", "Page Createur"))
@@ -377,39 +424,184 @@ class Ui_MainWindow(object):
         self.actionVoice_Feedback.setText(_translate("MainWindow", "Voice Feedback"))
         self.actionModifier_une_base_de_donn_e.setText(_translate("MainWindow", "Modifier une base de donnée"))
 
+class ByPass(Ui_MainWindow):
 
-class Tobias():
-    
-    user=os.environ["USER"] #User's name
-    magicWords=os.environ["MDP"]
+    def login(self):
+        from PyQt5 import QtCore, QtGui, QtWidgets
+
+        if self.lineEdit_2.text() == "Joel":
+            if self.lineEdit.text() == "notmypassword":
+                self.window = QtWidgets.QMainWindow()
+                self.ui = Ui_MainWindow()
+                self.ui.setupUi(self.window)
+                self.MainWindow.close()
+                self.window.show()  
+            
+            else : 
+                    print("WRONG PASSWORD")
+                    sys.exit(0)
+        else :
+            print("WRONG PASSWORD")
+            sys.exit(0)
+
+    def setupUi(self, MainWindow):
+        sys.path.insert(1,f"/home/{Utilisateur}/Archetype/Tobi")
+        from Library.DBook import Database
+        image = Database().getPaths('icon','Images')
+
+        self.MainWindow = MainWindow
+        from PyQt5 import QtCore, QtGui, QtWidgets
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(556, 237)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_2.setGeometry(QtCore.QRect(30, 40, 221, 32))
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit.setGeometry(QtCore.QRect(30, 90, 221, 32))
+        self.lineEdit.setObjectName("lineEdit")
+        self.lineEdit.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton.setGeometry(QtCore.QRect(30, 150, 88, 34))
+        self.pushButton.setObjectName("pushButton")
+        self.lineEdit.returnPressed.connect(self.login)
+        self.pushButton.clicked.connect(self.login)
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(320, 20, 161, 191))
+        self.label.setText("")
+        self.label.setPixmap(QtGui.QPixmap(image))
+        self.label.setObjectName("label")
+        self.radioButton = QtWidgets.QRadioButton(self.centralwidget)
+        self.radioButton.setGeometry(QtCore.QRect(150, 160, 105, 22))
+        self.radioButton.setObjectName("radioButton")
+        self.label.raise_()
+        self.lineEdit.raise_()
+        self.lineEdit_2.raise_()
+        self.radioButton.raise_()
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 556, 30))
+        self.menubar.setObjectName("menubar")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        from PyQt5 import QtCore
+        
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "Authentification"))
+        self.lineEdit.setPlaceholderText(_translate("MainWindow", "Enter Password"))
+        self.lineEdit_2.setPlaceholderText(_translate("MainWindow", "Enter Name"))
+        self.radioButton.setText(_translate("MainWindow", "Keep Token"))
+        self.pushButton.setText(_translate("MainWindow", "Login"))
+
+class Tobias(ByPass):
     
     def __init__(self):
-       
-        """Informations about Tobias displayed in the python interpreter """
+        from Library.DBook import Database        
+        self.confs = Database().getPaths('path','ConfigurationJson')
+        self.networkB = Database().getPaths('network','sysCommandsDirectory')
+        from PyQt5 import QtCore, QtGui, QtWidgets
 
-        self.nom="Tobias"
+        self.user=os.environ["USER"] #User's name
 
+        #Launching Sequence
+        if len(sys.argv) > 1 :
+            if sys.argv[1] == "Start":
+                self.firstStartSequence() #Working
+            elif sys.argv[1] == "Terminal" :
+                # self.terminalMode()
+                pass
+        else :
+
+            self.threadLoop()
+            app = QtWidgets.QApplication(sys.argv)
+            MainWindow = QtWidgets.QMainWindow()
+            ui = ByPass()
+            ui.setupUi(MainWindow)
+            MainWindow.show()
+            sys.exit(app.exec_())
+               
+    def threadLoop(self):
+        import threading
+
+        mon_thread=threading.Thread(target=self.loopSequence)   #définit la fonction a executer en arrière-plan
+        mon_thread.start()    #lance la fonction, sans faire freeze la fenêtre
+            
     def firstStartSequence(self):
-     
+        
+        databasePassword = getpass.getpass("Mot de passe de base de donnée : ")
+        os.environ['MDP'] = databasePassword
+        newConfig = {
+        "Configurations": [
+            {
+            "Backbone": {
+                "ipScan": "False",
+                "networkSpace": "False",
+                "allow/Deny access": "False"
+            },
+            "Riot": {
+                "authorized_keys": "False",
+                "crontabCheck": "False",
+                "connexions": "False",
+                "processus": "False"
+            },
+            "General": {
+                "AllyComputer": "False",
+                "Internet Protocol": "False",
+                "Langue": "FR"
+            },
+            "user": {
+                "name": "Toula",
+                "prenom": "Joel",
+                "phone number": "0694232624",
+                "adresse mail": "joel.toula@gmail.com"
+            },
+            "Tobias": {
+                "name": "MainTobias",
+                "local dbpassword": databasePassword
+            }
+            }
+        ]
+        }
+        with open(f"{self.confs}","w") as config :
+            json.dump(newConfig,config,indent=2)
+        
+        from launcher import firstPart
+        from launcher import PromptWindow
+        firstPart().fromZeroToHero() #Work in Progress
+
+        from Library.NBook import Network
+        from Library.DBook import Database
+        from Backbone import Backbone
+        from PyQt5 import QtCore, QtGui, QtWidgets
+
         print("Launching startSequence")
 
         """ Execute the Start Sequence everytime Tobias is summoned 
             Make sure the packages are here and configure what needs to be for the first start """
         
         #Install packages
-        firstStart().fromZeroToHero() #Work in Progress
        
         #Creates and deploy databases
-        firstStart().createDatabases() #Works
+        firstPart().createDatabases() #Works
+        
+        os.system(f"{self.networkB}")
        
         #First Start interface and input password
-        PromptWindow()
+        Database("backbone","id","statut","ipAddress","NULL","Allowed",f"{Network().myIp('ip')}").insertInDatabase()
 
         #Creates rsa'keys
-        firstStart().rsaKeys()
+        firstPart().rsaKeys()
        
         #Port Scan
-        Backbone.getMyPorts(Network.Mon_IP())
+        Backbone().getMyPorts()
 
         #Get the athorized_keys file copy
         # Security.initialisationAutorizedKeys()
@@ -418,27 +610,31 @@ class Tobias():
         # Security.initialisationCrontab()
 
         #Get Network Informations , initialize values in the database
-        os.system("/home/{}/Archétype/Tobi/systembuds/network.bash".format(self.user))
 
         #Get the diffrent ips on my network
-        Network.Routine(Network.Mon_IP())
+        Network().currentNH(Network().myIp("ip"))
 
         #Do an in-depth check on the ips
-        Network.Reseau(Network.Mon_IP())
-        
+        Network().networkScan(Network().myIp("ip"))
 
-    def startSequence(self):
-        pass
+        PromptWindow()
         
     def threads(self,something):
         mon_thread=threading.Thread(target=something)   #définit la fonction a executer en arrière-plan
         mon_thread.start()    #lance la fonction, sans faire freeze la fenêtre
 
-
     def loopSequence(self):
-        """ Execute every methods in order to make them properly available to the user """
-        
 
+        import time
+        from multiprocessing import Process
+        from RawNetwork import Ally_Computers,internetProtocol
+        from Backbone import Backbone
+        from Riot import Security
+        from Library.NBook import Network
+
+
+        """ Execute every methods in order to make them properly available to the user """
+               
         print("Launching loopSequence")
         
        
@@ -446,36 +642,37 @@ class Tobias():
 
             #BackBone
             if self.getModuleData("ipScan","Backbone") == "True" :
-                self.threads(Backbone.ipScan(Network.Mon_IP()))
+                self.threads(Backbone().innerPortScan())
 
             if self.getModuleData("networkSpace","Backbone") == "True" :
-                self.threads(Backbone.networkSpace())
+                self.threads(Backbone().networkSpace())
             
             if self.getModuleData("allow/Deny access","Backbone") == "True" :
-                self.threads(Etapes_de_Fonctionnement())
+                self.threads(Backbone().Etapes_de_Fonctionnement())
 
             #Riot
-            if self.getModuleData("authorized_keys","Riot") == "True" :
-                self.threads(Security.autorized_keysCheck())
+            # if self.getModuleData("authorized_keys","Riot") == "True" :
+            #     self.threads(Security.autorized_keysCheck())
             
-            if self.getModuleData("crontabCheck","Riot") == "True" :
-                self.threads(Security.crontabCheck())   
+            # if self.getModuleData("crontabCheck","Riot") == "True" :
+            #     self.threads(Security.crontabCheck())   
     
             if self.getModuleData("connexions","Riot") == "True" :
-                self.threads(Security.connexion())
+                self.threads(Security().connexion())
     
             if self.getModuleData("processus","Riot") == "True" :
-                self.threads(Security.Processus())
+                self.threads(Security().Processus())
             
             #RawNetwork
-            if self.getModuleData("AllyComputer","General") == "True" :
-                self.threads(Ally_Computers().Main())
+          #  if self.getModuleData("AllyComputer","General") == "True" :
+           #     self.threads(Ally_Computers().Main())
     
             if self.getModuleData("Internet Protocol","General") == "True" :
-                internetProtocol().Main()
+                self.threads(internetProtocol().Main())
+            
+            #Sauvegarde
 
             time.sleep(0.2)
-
 
     def stopSequence(self): 
 
@@ -485,17 +682,6 @@ class Tobias():
             Make sure everything is ready to be closed and close it """
         pass
 
-    def reload(self):
-        os.system("mysql -u Python -p$MDP -D tobiasdb -e 'DROP DATABASE tobiasdb'")
-
-    def terminalMode(self):
-        
-        print("Launching Terminal Mode")
-
-        """Terminal Version of Tobias"""
-
-        pass
-    
     def rawMode(self):
         
         print("Launching Raw Mode")
@@ -503,15 +689,10 @@ class Tobias():
         """ Arguments only Version of Tobias"""
         
         pass
-        
-    #CONFIGURATIONS
-
-    def getTextConfig(self):
-        with open("/home/joel/Archétype/Tobi/Admin/Configurations.json","r") as variable :
-            return variable.read()
 
     def getModuleData(self,searchingFor,fieldName='user'):
-        with open("/home/joel/Archétype/Tobi/Admin/Configurations.json","r") as config :
+        import json
+        with open(f"{self.confs}","r") as config :
             content = json.load(config)
 
         for parameters in content['Configurations'] :
@@ -520,30 +701,10 @@ class Tobias():
                     return values
 
 
-def threadLoop():
-        mon_thread=threading.Thread(target=Tobias().loopSequence)   #définit la fonction a executer en arrière-plan
-        mon_thread.start()    #lance la fonction, sans faire freeze la fenêtre
-
-
-#Tobias Main Tasks
-    
+#Tobias Main Task
 if __name__ == "__main__":
-    if len(sys.argv) > 1 :
-        if sys.argv[1] == "Start":
-            Tobias().reload()
-            Tobias().firstStartSequence() #Working
-        elif sys.argv[1] == "Reload" :
-            Tobias().reload()
-        elif sys.argv[1] == "Config" :
-            print(Tobias().getTextConfig())
-    else :
-        threadLoop()
-        app = QtWidgets.QApplication(sys.argv)
-        MainWindow = QtWidgets.QMainWindow()
-        ui = Ui_MainWindow()
-        ui.setupUi(MainWindow)
-        MainWindow.show()
-        sys.exit(app.exec_())
+    Tobias()
+        
 
 
 
