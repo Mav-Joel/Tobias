@@ -1,0 +1,32 @@
+{
+  "Configurations": [
+    {
+      "Backbone": {
+        "ipScan": "False",
+        "networkSpace": "False",
+        "allow/Deny access": "False"
+      },
+      "Riot": {
+        "authorized_keys": "False",
+        "crontabCheck": "False",
+        "connexions": "False",
+        "processus": "False"
+      },
+      "General": {
+        "AllyComputer": "False",
+        "Internet Protocol": "False",
+        "Langue": "FR"
+      },
+      "user": {
+        "name": "Toula",
+        "prenom": "Joel",
+        "phone number": "03232389",
+        "adresse mail": "joel.toula@gmail.com"
+      },
+      "Tobias": {
+        "name": "MainTobias",
+        "local dbpassword": "notmypassword"
+      }
+    }
+  ]
+}
