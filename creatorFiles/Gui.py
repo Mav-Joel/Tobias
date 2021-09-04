@@ -46,14 +46,7 @@ class GraphicalUserInterface():
         # print("|(1) Outils  # (2) Réseau  # (3) Internet  |\n|(4) Stockage  # (5) Serveur  # (6) Configuration  | \n|(7) Créateur  # (8) LoopSequence  # (9) Deploy Violet |\n")
         # self.chooseAction()
 
-    def login(self):
-        os.system("clear")
-        print("--------------- Tobias Login Page : ---------------\n")
-        username = input("               Nom d'utilisateur : ")
-        password = getpass.getpass("               Mot de passe : ")
-        if username != "Joel" or password != "Joel":
-                print("WRONG")
-                sys.exit(0)
+  
 
     def showBlocksFromDB(self):
         with open(self.blockDbPath, 'r') as f:
